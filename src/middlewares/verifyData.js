@@ -6,7 +6,7 @@ initializeApp({
   credential: applicationDefault(),
 });
 
-const verifyToken = async (req, res) => {
+const verifyToken = async (req, res, next) => {
   const idToken = req.body.tokenId;
 
   if (!idToken)
@@ -16,11 +16,8 @@ const verifyToken = async (req, res) => {
 
   try {
     const decodedToken = await getAuth().verifyIdToken(idToken);
-    const email = decodedToken.email;
-    req.user = {
-      email: email,
-    };
-    // --- Insert the logic to the API Legends request ---
+    req.email = decodedToken.email;
+    next();
   } catch (err) {
     res.status(401).send({
       status: "FAILED",
