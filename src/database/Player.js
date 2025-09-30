@@ -10,4 +10,17 @@ const createPlayer = async (newPlayer) => {
   }
 };
 
-module.exports = { createPlayer };
+const updatePlayer = async (email, playerData) => {
+  try {
+    const updatedPlayer = await Player.findOneAndUpdate(
+      { email: email },
+      { $set: playerData },
+      { new: true }
+    );
+    return updatedPlayer;
+  } catch (err) {
+    throw err;
+  }
+};
+
+module.exports = { createPlayer, updatePlayer };
