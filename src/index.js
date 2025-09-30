@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { initializeApp, applicationDefault } = require("firebase-admin/app");
+const { initializeApp, credential } = require("firebase-admin/app");
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
@@ -8,9 +8,10 @@ const routes = require("./routes/playerRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_JSON);
 
 initializeApp({
-  credential: applicationDefault(),
+  credential: credential.cert(serviceAccount),
 });
 
 app.use(bodyParser.json());
