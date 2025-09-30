@@ -19,7 +19,8 @@ const createPlayer = async (req, res) => {
   const existingPLayer = await player.findOne({ email: req.email });
 
   if (existingPLayer) {
-    // --- Insert the PUT request & view if the active is true or false;
+    console.log("Player already exists, updating...");
+    updatePlayer(req, res);
   } else {
     const newPlayer = {
       name: playerData.name,
@@ -49,6 +50,26 @@ const createPlayer = async (req, res) => {
         .status(err?.status || 500)
         .send({ status: "FAILED", data: { error: err?.message || err } });
     }
+  }
+};
+
+const updatePlayer = async (req, res) => {
+  const playerData = req.body;
+
+  if (!playerData.active) {
+    playerData.active = true;
+  }
+
+  try {
+    const updatedPlayer = await playerService.updateOnePlayer(
+      req.email,
+      playerData
+    );
+    res.status(201).send({ status: "OK", data: updatedPlayer });
+  } catch (err) {
+    res
+      .status(err?.status || 500)
+      .send({ status: "FAILED", data: { error: err?.message || err } });
   }
 };
 

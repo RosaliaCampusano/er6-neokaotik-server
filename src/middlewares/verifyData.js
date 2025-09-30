@@ -1,10 +1,4 @@
-const { initializeApp, applicationDefault } = require("firebase-admin/app");
 const { getAuth } = require("firebase-admin/auth");
-require("dotenv").config();
-
-initializeApp({
-  credential: applicationDefault(),
-});
 
 const verifyToken = async (req, res, next) => {
   const idToken = req.body.tokenId;
@@ -28,4 +22,4 @@ const verifyToken = async (req, res, next) => {
   }
 };
 
-module.exports = verifyToken;
+module.exports = { verifyToken };
