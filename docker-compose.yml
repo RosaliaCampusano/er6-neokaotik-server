@@ -1,0 +1,7 @@
+services:
+  mobile:
+    build: .
+    container_name: team1-server
+    ports:
+      - "6000:4180"
+    restart: unless-stopped
