@@ -9,6 +9,16 @@ const createNewPlayer = async (newPlayer) => {
   }
 };
 
+const updateOnePlayer = async (email, playerData) => {
+  try {
+    const updatedPlayer = Player.updatePlayer(email, playerData);
+    return updatedPlayer;
+  } catch (err) {
+    throw err;
+  }
+};
+
 module.exports = {
   createNewPlayer,
+  updateOnePlayer,
 };
