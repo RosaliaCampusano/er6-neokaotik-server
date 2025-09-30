@@ -22,18 +22,18 @@ jobs:
       - name: Set container name
         run: |
        
-          if [ -z "${{ secrets.NEOKAOTIK }}" ]; then
+          if [ -z "${{ secrets.CONTAINER_NAME }}" ]; then
             echo "ERROR: El secreto CONTAINER_NAME no está definido"
             exit 1
           fi
-          echo "NEOKAOTIK=${{ secrets.NEOKAOTIK }}" >> $GITHUB_ENV
+          echo "CONTAINER_NAME=${{ secrets.NEOKAOTIK }}" >> $GITHUB_ENV
 
       - name: Build and restart Docker container
         run: |
           cd $GITHUB_WORKSPACE
 
           
-          docker rm -f $CONTAINER_NAME || true
+          docker rm -f $NEOKAOTIK || true
 
           
           docker compose -f docker-compose.yml build server
