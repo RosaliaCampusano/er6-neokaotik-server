@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "672400850135",
+    "project_id": "neokaotik-dd05a",
+    "storage_bucket": "neokaotik-dd05a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:672400850135:android:23cba112056084d2dd8492",
+        "android_client_info": {
+          "package_name": "com.neokaotik"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "672400850135-truvfs7ugimnrlgq1an97jir18qvl7nd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.neokaotik",
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
+          }
+        },
+        {
+          "client_id": "672400850135-9ajik5mi8oei6k0qbr39qakm734h61pa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAHKlDOli5odJDDFc5s_l7ZcA3loQbb6_w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "672400850135-9ajik5mi8oei6k0qbr39qakm734h61pa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
