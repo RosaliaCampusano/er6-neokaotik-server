@@ -45,8 +45,8 @@ const createPlayer = async (req, res) => {
 
     try {
       const createdPlayer = await playerService.createNewPlayer(newPlayer);
-      res.status(201).send({ status: "OK", data: createdPlayer });
       console.log(createdPlayer);
+      res.status(201).send({ status: "OK", data: createdPlayer });
     } catch (err) {
       res
         .status(err?.status || 500)
@@ -67,8 +67,8 @@ const updatePlayer = async (req, res) => {
       req.email,
       playerData
     );
-    res.status(201).send({ status: "OK", data: updatedPlayer });
     console.log(updatedPlayer);
+    res.status(201).send({ status: "OK", data: updatedPlayer });
   } catch (err) {
     res
       .status(err?.status || 500)
