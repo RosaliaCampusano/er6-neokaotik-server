@@ -3,6 +3,8 @@ const { getAuth } = require("firebase-admin/auth");
 const verifyToken = async (req, res, next) => {
   const idToken = req.body.tokenId;
 
+  console.log("Verifying token:", idToken);
+
   if (!idToken)
     return res
       .status(401)
@@ -11,6 +13,8 @@ const verifyToken = async (req, res, next) => {
   try {
     const decodedToken = await getAuth().verifyIdToken(idToken);
     req.email = decodedToken.email;
+
+    console.log("Token verified for email:", req.email);
     next();
   } catch (err) {
     res.status(401).send({
