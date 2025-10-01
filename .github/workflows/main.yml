@@ -18,7 +18,7 @@ jobs:
         
       - name: Create Firebase JSON file from secret
         run: |
-          echo "${{ secrets.FIREBASE_SERVICE }}" | sed 's/\\n/\n/g' > firebase-service.json
+          echo "${{ secrets.FIREBASE_SERVICE }}" | base64 --decode > firebase-service.json
 
       - name: Pull latest changes
         run: git pull origin main
