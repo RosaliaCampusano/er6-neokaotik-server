@@ -11,7 +11,6 @@ const obtainPlayer = async (email) => {
     res.status(401).send({ error: "Invalid Player" });
   } else {
     console.log("Player data obtained from Kaotika API");
-    console.log(response.data);
     return response.data;
   }
 };
@@ -47,6 +46,7 @@ const createPlayer = async (req, res) => {
     try {
       const createdPlayer = await playerService.createNewPlayer(newPlayer);
       res.status(201).send({ status: "OK", data: createdPlayer });
+      console.log(createdPlayer);
     } catch (err) {
       res
         .status(err?.status || 500)
@@ -68,6 +68,7 @@ const updatePlayer = async (req, res) => {
       playerData
     );
     res.status(201).send({ status: "OK", data: updatedPlayer });
+    console.log(updatedPlayer);
   } catch (err) {
     res
       .status(err?.status || 500)
