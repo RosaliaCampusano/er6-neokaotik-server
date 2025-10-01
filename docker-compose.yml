@@ -1,5 +1,5 @@
 services:
-  mobile:
+  server:
     build: .
     container_name: team1-server
     ports:
