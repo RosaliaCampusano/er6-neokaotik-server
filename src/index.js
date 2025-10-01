@@ -10,6 +10,7 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 const serviceAccountString = process.env.FIREBASE_SERVICE_ACCOUNT_JSON;
 const serviceAccount = JSON.parse(serviceAccountString);
+
 serviceAccount.private_key = serviceAccount.private_key.replace(/\\n/g, "\n");
 
 admin.initializeApp({
