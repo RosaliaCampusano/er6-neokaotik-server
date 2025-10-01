@@ -3,5 +3,5 @@ services:
     build: .
     container_name: team1-server
     ports:
-      - "6000:4180"
+      - "6000:3000"
     restart: unless-stopped
