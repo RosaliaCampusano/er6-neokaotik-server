@@ -10,6 +10,8 @@ const obtainPlayer = async (email) => {
   if (response.status !== "OK") {
     res.status(401).send({ error: "Invalid Player" });
   } else {
+    console.log("Player data obtained from Kaotika API");
+    console.log(response.data);
     return response.data;
   }
 };
