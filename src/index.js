@@ -9,7 +9,8 @@ const routes = require("./routes/playerRoutes");
 const app = express();
 const PORT = process.env.PORT || 3000;
 const firebaseAccount = require("../firebase-service.json");
-console.log(firebaseAccount);
+
+firebaseAccount.private_key = firebaseAccount.private_key.replace(/\\n/g, "\n");
 
 admin.initializeApp({
   credential: admin.credential.cert(firebaseAccount),
