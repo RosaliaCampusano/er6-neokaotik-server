@@ -26,21 +26,21 @@ jobs:
             echo "ERROR: El secreto CONTAINER_NAME no está definido"
             exit 1
           fi
-          echo "CONTAINER_NAME=${{ secrets.NEOKAOTIK }}" >> $GITHUB_ENV
+          echo "CONTAINER_NAME=${{ secrets.CONTAINER_NAME }}" >> $GITHUB_ENV
 
       - name: Build and restart Docker container
         run: |
           cd $GITHUB_WORKSPACE
 
           
-          docker rm -f $NEOKAOTIK || true
+          docker rm -f $CONTAINER_NAME || true
 
           
           docker compose -f docker-compose.yml build server
           docker compose -f docker-compose.yml up -d --force-recreate server
 
           
-          docker rename server $NEOKAOTIK || true
+          docker rename server $CONTAINER_NAME || true
 
       - name: Clean up
         run: echo "Deployment for $CONTAINER_NAME complete."
