@@ -8,7 +8,7 @@ const obtainPlayer = async (email) => {
   const response = await data.json();
 
   if (response.status !== "OK") {
-    res.status(401).send({ error: "Invalid Player" });
+    return response.data;
   } else {
     console.log("Player data obtained from Kaotika API");
     return response.data;
