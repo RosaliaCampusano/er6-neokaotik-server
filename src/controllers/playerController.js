@@ -8,6 +8,7 @@ const obtainPlayer = async (email) => {
   const response = await data.json();
 
   if (response.status !== "OK") {
+    console.log("Error player not found");
     return response.data;
   } else {
     console.log("Player data obtained from Kaotika API");
@@ -45,9 +46,10 @@ const createPlayer = async (req, res) => {
 
     try {
       const createdPlayer = await playerService.createNewPlayer(newPlayer);
-      console.log(createdPlayer);
+      console.log("Player created with success!");
       res.status(201).send({ status: "OK", data: createdPlayer });
     } catch (err) {
+      console.log("Error: ", err?.message);
       res
         .status(err?.status || 500)
         .send({ status: "FAILED", data: { error: err?.message || err } });
@@ -67,9 +69,10 @@ const updatePlayer = async (req, res) => {
       req.email,
       playerData
     );
-    console.log(updatedPlayer);
+    console.log("Player updated with success!");
     res.status(201).send({ status: "OK", data: updatedPlayer });
   } catch (err) {
+    console.log("FAILED", err?.message);
     res
       .status(err?.status || 500)
       .send({ status: "FAILED", data: { error: err?.message || err } });

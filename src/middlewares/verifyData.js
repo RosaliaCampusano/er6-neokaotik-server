@@ -17,6 +17,7 @@ const verifyToken = async (req, res, next) => {
     console.log("Token verified for email:", req.email);
     next();
   } catch (err) {
+    console.log("FAILED ", err?.message);
     res.status(401).send({
       status: "FAILED",
       data: {
