@@ -1,4 +1,4 @@
-const Player = require("../models/playerModel");
+import Player = require("../models/playerModel");
 
 const createPlayer = async (newPlayer) => {
   try {
@@ -23,4 +23,4 @@ const updatePlayer = async (email, playerData) => {
   }
 };
 
-module.exports = { createPlayer, updatePlayer };
+export = { createPlayer, updatePlayer };

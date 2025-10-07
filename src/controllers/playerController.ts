@@ -1,7 +1,7 @@
-const playerService = require("../services/playerService");
-const player = require("../models/playerModel");
+import playerService = require("../services/playerService");
+import player = require("../models/playerModel");
 
-const obtainPlayer = async (email) => {
+const obtainPlayer = async (email: string) => {
   const data = await fetch(
     `https://kaotika-server.fly.dev/players/email/${email}`
   );
@@ -16,7 +16,7 @@ const obtainPlayer = async (email) => {
   }
 };
 
-const createPlayer = async (req, res) => {
+const createPlayer = async (req: any, res: any) => {
   const playerData = await obtainPlayer(req.email);
   const existingPLayer = await player.findOne({ email: req.email });
 
@@ -79,6 +79,4 @@ const updatePlayer = async (req, res) => {
   }
 };
 
-module.exports = {
-  createPlayer,
-};
+export = {createPlayer};

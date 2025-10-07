@@ -1,19 +1,24 @@
 require("dotenv").config();
-const admin = require("firebase-admin");
-const express = require("express");
-const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
+import admin = require("firebase-admin");
+import express = require("express");
+import bodyParser = require("body-parser");
+import mongoose = require("mongoose");
+import routes = require("./routes/playerRoutes");
+import firebaseAccount = require("../firebase-service.json");
+
 const mongodbRoute = process.env.MONGODB_CONNECTION;
-const routes = require("./routes/playerRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const firebaseAccount = require("../firebase-service.json");
 
 firebaseAccount.private_key = firebaseAccount.private_key.replace(/\\n/g, "\n");
 
 admin.initializeApp({
-  credential: admin.credential.cert(firebaseAccount),
+  credential: admin.credential.cert({
+  projectId: firebaseAccount.project_id,
+  privateKey: firebaseAccount.private_key,
+  clientEmail: firebaseAccount.client_email,
+  }),
 });
 
 app.use(bodyParser.json());
