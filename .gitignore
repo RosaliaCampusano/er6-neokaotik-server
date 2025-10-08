@@ -1,3 +1,5 @@
 .env
 /node_modules/
+/dist/
 neokaotik-service.json
+firebase-service.json
