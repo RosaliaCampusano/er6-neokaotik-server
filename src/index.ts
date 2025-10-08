@@ -4,15 +4,15 @@ import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import router from "./routes/playerRoutes";
-//@ts-ignore
+
 import firebaseAccount from "../firebase-service.json";
 
-const mongodbRoute = process.env.MONGODB_CONNECTION
+const mongodbRoute : string = process.env.MONGODB_CONNECTION
   ? process.env.MONGODB_CONNECTION
   : "";
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT : number | string = process.env.PORT || 3000;
 
 firebaseAccount.private_key = firebaseAccount.private_key.replace(/\\n/g, "\n");
 
