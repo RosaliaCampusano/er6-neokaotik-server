@@ -1,6 +1,6 @@
 import Player = require("../database/Player");
 
-const createNewPlayer = async (newPlayer: any) => {
+export const createNewPlayer = async (newPlayer: any) => {
   try {
     const createdPlayer = Player.createPlayer(newPlayer);
     return createdPlayer;
@@ -9,7 +9,7 @@ const createNewPlayer = async (newPlayer: any) => {
   }
 };
 
-const updateOnePlayer = async (email: string | any, playerData: any) => {
+export const updateOnePlayer = async (email: string | any, playerData: any) => {
   try {
     const updatedPlayer = Player.updatePlayer(email, playerData);
     return updatedPlayer;
@@ -18,7 +18,7 @@ const updateOnePlayer = async (email: string | any, playerData: any) => {
   }
 };
 
-export = {
+export default {
   createNewPlayer,
   updateOnePlayer,
 };

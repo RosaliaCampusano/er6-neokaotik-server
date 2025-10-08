@@ -1,9 +1,23 @@
 {
   "compilerOptions": {
-    "outDir": "./built",
-    "allowJs": true,
+    /*Basic Options*/
     "target": "es5",
-    "module": "nodenext"
+    "module": "commonjs",
+    "outDir": "./dist",
+    "rootDir": "./",
+    "sourceMap": true,
+    "allowJs": true,           //Allow js file to be compiled
+    
+    /* Strict Type-Checking Options */
+    "strict": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,      // allows to use commonjs and es6 modules together
+
+
+    /* Advanced Options */
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+
   },
-  "include": ["./src/**/*"]
+  // "include": ["./src/**/*"]
 }

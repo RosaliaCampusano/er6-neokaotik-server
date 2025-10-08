@@ -1,8 +1,8 @@
-import express = require("express");
+import express from "express";
 const router = express.Router();
-import playerController = require("../controllers/playerController");
-import middleware = require("../middlewares/verifyData");
+import playerController from "../controllers/playerController";
+import middleware from "../middlewares/verifyData";
 
 router.post("/", middleware.verifyToken, playerController.createPlayer);
 
-export = router;
+export default router;

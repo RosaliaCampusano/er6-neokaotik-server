@@ -1,12 +1,14 @@
 require("dotenv").config();
-import admin = require("firebase-admin");
-import express = require("express");
-import bodyParser = require("body-parser");
-import mongoose = require("mongoose");
-import routes = require("./routes/playerRoutes");
-import firebaseAccount = require("../firebase-service.json");
+import admin from "firebase-admin";
+import express from "express";
+import bodyParser from "body-parser";
+import mongoose from "mongoose";
+import router from "./routes/playerRoutes";
 
-const mongodbRoute = process.env.MONGODB_CONNECTION;
+//@ts-ignore
+import firebaseAccount from "../firebase-service.json";
+
+const mongodbRoute = (process.env.MONGODB_CONNECTION) ? process.env.MONGODB_CONNECTION : '';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -22,7 +24,7 @@ admin.initializeApp({
 });
 
 app.use(bodyParser.json());
-app.use("/api", routes);
+app.use("/api", router);
 
 async function start() {
   try {
@@ -30,7 +32,7 @@ async function start() {
     app.listen(PORT, () => {
       console.log(`API is listening on port ${PORT}`);
     });
-  } catch (error) {
+  } catch (error: any ) {
     console.log(error.message);
   }
 }

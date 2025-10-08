@@ -1,8 +1,7 @@
 import { playerRolesByEmail, specialEmails } from '../../roles/playerRoles';
 
-
-import playerService = require("../services/playerService");
-import player = require("../models/playerModel");
+import playerService from "../services/playerService";
+import player from "../models/playerModel";
 
 
 const obtainPlayer = async (email: string) => {
@@ -72,7 +71,7 @@ const createPlayer = async (req: any, res: any) => {
       
 
       res.status(201).send({ status: "OK", data: createdPlayer });
-    } catch (err) {
+    } catch (err: any) {
       console.log("Error: ", err?.message);
       res
         .status(err?.status || 500)
@@ -81,7 +80,7 @@ const createPlayer = async (req: any, res: any) => {
   }
 };
 
-const updatePlayer = async (req, res) => {
+const updatePlayer = async (req: any, res: any) => {
   const playerData = req.body;
 
   if (!playerData.active) {
@@ -95,7 +94,7 @@ const updatePlayer = async (req, res) => {
     );
     console.log("Player updated with success!");
     res.status(201).send({ status: "OK", data: updatedPlayer });
-  } catch (err) {
+  } catch (err: any) {
     console.log("FAILED", err?.message);
     res
       .status(err?.status || 500)
