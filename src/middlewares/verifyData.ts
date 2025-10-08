@@ -1,4 +1,4 @@
-import fbAdmin from "firebase-admin/auth";
+import admin from "firebase-admin";
 
 const verifyToken = async (req: any, res: any, next: any) => {
   const idToken = req.body.tokenId;
@@ -11,7 +11,7 @@ const verifyToken = async (req: any, res: any, next: any) => {
       .send({ status: "FAILED", data: { error: "Unauthorized" } });
 
   try {
-    const decodedToken = await fbAdmin.getAuth().verifyIdToken(idToken);
+    const decodedToken = await admin.auth().verifyIdToken(idToken);
     req.email = decodedToken.email;
 
     console.log("Token verified for email:", req.email);
@@ -27,4 +27,4 @@ const verifyToken = async (req: any, res: any, next: any) => {
   }
 };
 
-export default {verifyToken}
+export default { verifyToken };

@@ -2,3 +2,4 @@
 /node_modules/
 neokaotik-service.json
 firebase-service.json
+/dist/

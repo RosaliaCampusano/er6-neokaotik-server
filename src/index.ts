@@ -4,11 +4,12 @@ import express from "express";
 import bodyParser from "body-parser";
 import mongoose from "mongoose";
 import router from "./routes/playerRoutes";
-
 //@ts-ignore
 import firebaseAccount from "../firebase-service.json";
 
-const mongodbRoute = (process.env.MONGODB_CONNECTION) ? process.env.MONGODB_CONNECTION : '';
+const mongodbRoute = process.env.MONGODB_CONNECTION
+  ? process.env.MONGODB_CONNECTION
+  : "";
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -17,9 +18,9 @@ firebaseAccount.private_key = firebaseAccount.private_key.replace(/\\n/g, "\n");
 
 admin.initializeApp({
   credential: admin.credential.cert({
-  projectId: firebaseAccount.project_id,
-  privateKey: firebaseAccount.private_key,
-  clientEmail: firebaseAccount.client_email,
+    projectId: firebaseAccount.project_id,
+    privateKey: firebaseAccount.private_key,
+    clientEmail: firebaseAccount.client_email,
   }),
 });
 
@@ -32,7 +33,7 @@ async function start() {
     app.listen(PORT, () => {
       console.log(`API is listening on port ${PORT}`);
     });
-  } catch (error: any ) {
+  } catch (error: any) {
     console.log(error.message);
   }
 }

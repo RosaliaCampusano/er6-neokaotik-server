@@ -1,5 +1,4 @@
 "use strict";
-var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.playerRolesByEmail = exports.roles = exports.specialEmails = void 0;
 exports.specialEmails = {
@@ -14,9 +13,9 @@ exports.roles = {
     'mortimer': 'MORTIMER',
     'acolyte': 'ACOLYTE',
 };
-exports.playerRolesByEmail = (_a = {},
-    _a[exports.specialEmails.istvan] = exports.roles.istvan,
-    _a[exports.specialEmails.villain] = exports.roles.villain,
-    _a[exports.specialEmails.mortimer] = exports.roles.mortimer,
-    _a[exports.specialEmails.acolyte] = exports.roles.acolyte,
-    _a);
+exports.playerRolesByEmail = {
+    [exports.specialEmails.istvan]: exports.roles.istvan,
+    [exports.specialEmails.villain]: exports.roles.villain,
+    [exports.specialEmails.mortimer]: exports.roles.mortimer,
+    [exports.specialEmails.acolyte]: exports.roles.acolyte,
+};

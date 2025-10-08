@@ -1,23 +1,15 @@
 {
   "compilerOptions": {
-    /*Basic Options*/
-    "target": "es5",
+    "target": "es6",
     "module": "commonjs",
     "outDir": "./dist",
-    "rootDir": "./",
-    "sourceMap": true,
-    "allowJs": true,           //Allow js file to be compiled
-    
-    /* Strict Type-Checking Options */
+    "rootDir": ".",
+    "allowJs": true,
     "strict": true,
     "moduleResolution": "node",
-    "esModuleInterop": true,      // allows to use commonjs and es6 modules together
-
-
-    /* Advanced Options */
+    "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true
-
   },
-  // "include": ["./src/**/*"]
+  "include": ["src/**/*", "roles/**/*"]
 }
