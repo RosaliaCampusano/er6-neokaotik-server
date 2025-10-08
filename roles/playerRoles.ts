@@ -1,23 +1,23 @@
 
 export const specialEmails = {
     istvan : 'classcraft.daw2@aeg.eus',
-    villano : 'ozarate@aeg.eus',
+    villain : 'ozarate@aeg.eus',
     mortimer: 'oskar.calvo@aeg.eus',
-    acolito: '%@ikasle.aeg.eus',
+    acolyte: '%@ikasle.aeg.eus',
 }
 
 export const roles = {
     'istvan': 'ISTVAN',
-    'villano': 'VILLANO',
+    'villain': 'VILLAIN',
     'mortimer': 'MORTIMER',
-    'acolito': 'ACOLITO',
+    'acolyte': 'ACOLYTE',
 
 };
 
 
 export const playerRolesByEmail = {
-    [specialEmails.istvan] : [roles.istvan],
-    [specialEmails.villano]: [roles.villano],
-    [specialEmails.mortimer]: [roles.mortimer],
-    [specialEmails.acolito]: [roles.acolito],
+    [specialEmails.istvan] : roles.istvan,
+    [specialEmails.villain]: roles.villain,
+    [specialEmails.mortimer]: roles.mortimer,
+    [specialEmails.acolyte]: roles.acolyte,
 };

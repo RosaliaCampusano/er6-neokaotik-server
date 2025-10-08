@@ -29,8 +29,8 @@ function assignPlayerRole(email: string) {
         case (specialEmails.mortimer.split('@')[1]):
             return playerRolesByEmail[email];
 
-        case (specialEmails.acolito.split('@')[1]):
-            return playerRolesByEmail[specialEmails.acolito];
+        case (specialEmails.acolyte.split('@')[1]):
+            return playerRolesByEmail[specialEmails.acolyte];
 
         default:
             return null;
