@@ -1,5 +1,9 @@
+import { playerRolesByEmail, specialEmails } from '../../roles/playerRoles';
+
+
 import playerService = require("../services/playerService");
 import player = require("../models/playerModel");
+
 
 const obtainPlayer = async (email: string) => {
   const data = await fetch(
@@ -15,6 +19,23 @@ const obtainPlayer = async (email: string) => {
     return response.data;
   }
 };
+
+function assignPlayerRole(email: string) {
+    console.log('Asignando rol al jugador...');
+
+    const emailPatterns = email.split('@');
+    switch (emailPatterns[emailPatterns.length - 1]) { // === emailPatterns[1]
+
+        case (specialEmails.mortimer.split('@')[1]):
+            return playerRolesByEmail[email];
+
+        case (specialEmails.acolito.split('@')[1]):
+            return playerRolesByEmail[specialEmails.acolito];
+
+        default:
+            return null;
+    }
+}
 
 const createPlayer = async (req: any, res: any) => {
   const playerData = await obtainPlayer(req.email);
@@ -42,11 +63,14 @@ const createPlayer = async (req: any, res: any) => {
       inventory: playerData.inventory,
       equipment: playerData.equipment,
       active: false,
+      rol: assignPlayerRole(playerData.email),
     };
 
     try {
       const createdPlayer = await playerService.createNewPlayer(newPlayer);
       console.log("Player created with success!");
+      
+
       res.status(201).send({ status: "OK", data: createdPlayer });
     } catch (err) {
       console.log("Error: ", err?.message);
