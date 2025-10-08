@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 const { Schema } = mongoose;
 
 // --- Reusable attribute structure ---
@@ -189,4 +189,4 @@ const playerSchema = new Schema({
   active: Boolean,
 });
 
-module.exports = mongoose.model("Player", playerSchema);
+export default mongoose.model("Player", playerSchema);

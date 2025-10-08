@@ -1,6 +1,6 @@
-const Player = require("../models/playerModel");
+import Player from "../models/playerModel";
 
-const createPlayer = async (newPlayer) => {
+const createPlayer = async (newPlayer: any) => {
   try {
     let playerToInsert = new Player(newPlayer);
     const createdPlayer = await playerToInsert.save();
@@ -10,7 +10,7 @@ const createPlayer = async (newPlayer) => {
   }
 };
 
-const updatePlayer = async (email, playerData) => {
+const updatePlayer = async (email: string | any, playerData: any) => {
   try {
     const updatedPlayer = await Player.findOneAndUpdate(
       { email: email },
@@ -23,4 +23,4 @@ const updatePlayer = async (email, playerData) => {
   }
 };
 
-module.exports = { createPlayer, updatePlayer };
+export = { createPlayer, updatePlayer };

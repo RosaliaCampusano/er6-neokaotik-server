@@ -2,10 +2,12 @@
   "name": "er6-neokaotik-server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon src/index.js"
+    "dev": "nodemon src/index.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/index.js"
   },
   "repository": {
     "type": "git",
@@ -19,13 +21,17 @@
   },
   "homepage": "https://github.com/RosaliaCampusano/er6-neokaotik-server#readme",
   "devDependencies": {
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.10",
+    "ts-loader": "^9.5.4",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
   },
   "dependencies": {
     "body-parser": "^2.2.0",
     "dotenv": "^17.2.2",
     "express": "^5.1.0",
     "firebase-admin": "^13.5.0",
-    "mongoose": "^8.18.2"
+    "mongoose": "^8.18.2",
+    "source-map-loader": "^5.0.0"
   }
 }

@@ -1,20 +1,42 @@
-const playerService = require("../services/playerService");
-const player = require("../models/playerModel");
+import { playerRolesByEmail, specialEmails } from '../../roles/playerRoles';
 
-const obtainPlayer = async (email) => {
+import playerService from "../services/playerService";
+import player from "../models/playerModel";
+
+
+const obtainPlayer = async (email: string) => {
   const data = await fetch(
     `https://kaotika-server.fly.dev/players/email/${email}`
   );
   const response = await data.json();
 
   if (response.status !== "OK") {
-    res.status(401).send({ error: "Invalid Player" });
+    console.log("Error player not found");
+    return response.data;
   } else {
+    console.log("Player data obtained from Kaotika API");
     return response.data;
   }
 };
 
-const createPlayer = async (req, res) => {
+function assignPlayerRole(email: string) {
+    console.log('Asignando rol al jugador...');
+
+    const emailPatterns = email.split('@');
+    switch (emailPatterns[emailPatterns.length - 1]) { // === emailPatterns[1]
+
+        case (specialEmails.mortimer.split('@')[1]):
+            return playerRolesByEmail[email];
+
+        case (specialEmails.acolyte.split('@')[1]):
+            return playerRolesByEmail[specialEmails.acolyte];
+
+        default:
+            return null;
+    }
+}
+
+const createPlayer = async (req: any, res: any) => {
   const playerData = await obtainPlayer(req.email);
   const existingPLayer = await player.findOne({ email: req.email });
 
@@ -40,12 +62,17 @@ const createPlayer = async (req, res) => {
       inventory: playerData.inventory,
       equipment: playerData.equipment,
       active: false,
+      rol: assignPlayerRole(playerData.email),
     };
 
     try {
       const createdPlayer = await playerService.createNewPlayer(newPlayer);
+      console.log("Player created with success!");
+      
+
       res.status(201).send({ status: "OK", data: createdPlayer });
-    } catch (err) {
+    } catch (err: any) {
+      console.log("Error: ", err?.message);
       res
         .status(err?.status || 500)
         .send({ status: "FAILED", data: { error: err?.message || err } });
@@ -53,7 +80,7 @@ const createPlayer = async (req, res) => {
   }
 };
 
-const updatePlayer = async (req, res) => {
+const updatePlayer = async (req: any, res: any) => {
   const playerData = req.body;
 
   if (!playerData.active) {
@@ -65,14 +92,14 @@ const updatePlayer = async (req, res) => {
       req.email,
       playerData
     );
+    console.log("Player updated with success!");
     res.status(201).send({ status: "OK", data: updatedPlayer });
-  } catch (err) {
+  } catch (err: any) {
+    console.log("FAILED", err?.message);
     res
       .status(err?.status || 500)
       .send({ status: "FAILED", data: { error: err?.message || err } });
   }
 };
 
-module.exports = {
-  createPlayer,
-};
+export = {createPlayer};
