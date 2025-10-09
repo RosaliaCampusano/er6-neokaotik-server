@@ -3,14 +3,14 @@
     "target": "es6",
     "module": "commonjs",
     "outDir": "./dist",
-    "rootDir": ".",
+    "rootDir": "./src",
     "allowJs": true,
     "strict": true,
     "moduleResolution": "node",
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
+    "forceConsistentCasingInFileNames": true,
   },
-  "include": ["src/**/*", "roles/**/*"]
+  "include": ["./src/**/*", "./package.json", "./node-modules/"]
 }

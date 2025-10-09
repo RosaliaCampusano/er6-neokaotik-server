@@ -1,4 +1,4 @@
-import { playerRolesByEmail, specialEmails } from '../../roles/playerRoles';
+import { playerRolesByEmail, specialEmails } from '../roles/playerRoles';
 
 import playerService from "../services/playerService";
 import player from "../models/playerModel";
