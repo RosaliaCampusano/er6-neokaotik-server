@@ -1,42 +1,11 @@
-# FROM node:20-alpine
-
-
-# WORKDIR /usr/src/app
-
-# COPY package*.json ./
-
-
-# RUN npm install --production
-
-
-# COPY . .
-
-
-# EXPOSE 3000
-
-
-# CMD ["npm", "start"]
-
-
-
-
-
-
-
-
 ARG NODE_VERSION=22.13.1
 FROM node:${NODE_VERSION}-slim as base
 
-WORKDIR /usr/src/app
-#WORKDIR /app
+WORKDIR /app
 
 ENV NODE_ENV=production
 
 FROM base as build
-
-
-
-# RUN apt-get update -qq && apt-get install -y build-essential python3
 
 COPY package*.json ./
 RUN npm ci
