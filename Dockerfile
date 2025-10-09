@@ -9,7 +9,7 @@ COPY . .
 
 RUN npm run build
 
-FROM base
+FROM base as build
 
 COPY --from=build /app/dist ./dist
 COPY --from=build /app/node_modules ./node_modules
