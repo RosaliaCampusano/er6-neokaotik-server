@@ -27,7 +27,9 @@
 ARG NODE_VERSION=22.13.1
 FROM node:${NODE_VERSION}-slim as base
 
-WORKDIR /usr/src/app
+# WORKDIR /usr/src/app
+WORKDIR /app
+
 ENV NODE_ENV=production
 
 FROM base as build
