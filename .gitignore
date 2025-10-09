@@ -1,6 +1,5 @@
 .env
 /node_modules/
 /dist/
-/roles/
 neokaotik-service.json
 firebase-service.json
