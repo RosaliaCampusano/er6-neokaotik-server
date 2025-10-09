@@ -7,7 +7,6 @@ ENV NODE_ENV=production
 FROM base as build
 
 RUN apt-get update -qq && apt-get install -y build-essential python3
-RUN npm install && npm install typescript
 COPY package*.json ./
 RUN npm ci
 
