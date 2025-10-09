@@ -41,7 +41,6 @@ FROM base as build
 COPY package*.json ./
 RUN npm ci
 
-RUN npm install --production
 
 COPY . .
 
