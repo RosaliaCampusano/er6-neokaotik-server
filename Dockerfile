@@ -1,9 +1,11 @@
 ARG NODE_VERSION=22.13.1
 FROM node:${NODE_VERSION}-slim as base
-WORKDIR /app
+WORKDIR /usr/src/app
 ENV NODE_ENV=production
 FROM base as build
-COPY package*.json ./
+
+COPY ./package.json ./package.lock .
+
 RUN npm ci
 COPY . .
 RUN tsc --version
