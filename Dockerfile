@@ -6,6 +6,7 @@ FROM base as build
 COPY package*.json ./
 RUN npm ci
 COPY . .
+RUN tsc --version
 RUN npm run build
 FROM base
 COPY --from=build /app/dist ./dist
