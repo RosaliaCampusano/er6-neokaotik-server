@@ -1,15 +1,9 @@
-ARG NODE_VERSION=22.13.1
-FROM node:${NODE_VERSION}-slim as base
+FROM node:20-alpine
 
-WORKDIR /app
+ WORKDIR /usr/src/app
 
-ENV NODE_ENV=production
-
-FROM base as build
-
+RUN npm install --production
 COPY package*.json ./
-RUN npm ci
-
 
 COPY . .
 
@@ -23,4 +17,4 @@ COPY --from=build /app/package.json ./package.json
 
 EXPOSE 3000
 
-RUN npm run start
+CMD ["node", "dist/index.js"]
