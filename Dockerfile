@@ -4,8 +4,7 @@ WORKDIR /usr/src/app
 ENV NODE_ENV=production
 FROM base as build
 
-COPY ./package.json ./package.lock .
-
+COPY package*.json ./
 RUN npm ci
 COPY . .
 RUN tsc --version
