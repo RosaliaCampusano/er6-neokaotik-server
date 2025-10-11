@@ -1,8 +1,6 @@
-import { playerRolesByEmail, specialEmails } from '../../roles/playerRoles';
-
+import { playerRolesByEmail, specialEmails } from "../roles/playerRoles";
 import playerService from "../services/playerService";
 import player from "../models/playerModel";
-
 
 const obtainPlayer = async (email: string) => {
   const data = await fetch(
@@ -20,20 +18,21 @@ const obtainPlayer = async (email: string) => {
 };
 
 function assignPlayerRole(email: string) {
-    console.log('Asignando rol al jugador...');
+  console.log("Assigning roles to the player...");
 
-    const emailPatterns = email.split('@');
-    switch (emailPatterns[emailPatterns.length - 1]) { // === emailPatterns[1]
+  const emailPatterns = email.split("@");
+  switch (
+    emailPatterns[emailPatterns.length - 1] // === emailPatterns[1]
+  ) {
+    case specialEmails.mortimer.split("@")[1]:
+      return playerRolesByEmail[email];
 
-        case (specialEmails.mortimer.split('@')[1]):
-            return playerRolesByEmail[email];
+    case specialEmails.acolyte.split("@")[1]:
+      return playerRolesByEmail[specialEmails.acolyte];
 
-        case (specialEmails.acolyte.split('@')[1]):
-            return playerRolesByEmail[specialEmails.acolyte];
-
-        default:
-            return null;
-    }
+    default:
+      return null;
+  }
 }
 
 const createPlayer = async (req: any, res: any) => {
@@ -63,12 +62,13 @@ const createPlayer = async (req: any, res: any) => {
       equipment: playerData.equipment,
       active: false,
       rol: assignPlayerRole(playerData.email),
+      socketId: null,
+      isInside: false,
     };
 
     try {
       const createdPlayer = await playerService.createNewPlayer(newPlayer);
       console.log("Player created with success!");
-      
 
       res.status(201).send({ status: "OK", data: createdPlayer });
     } catch (err: any) {
@@ -102,4 +102,4 @@ const updatePlayer = async (req: any, res: any) => {
   }
 };
 
-export = {createPlayer};
+export = { createPlayer };
