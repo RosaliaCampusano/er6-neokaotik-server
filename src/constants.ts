@@ -22,4 +22,5 @@ export const SocketEvents: any = {
   DISCONNECT: "disconnect",
   PLAYER_CONNECTED: "player-connected",
   PLAYER_DISCONNECTED: "player-disconnected",
+  ISTVAN_EVENT: "istvan:scanQR",
 };
