@@ -32,7 +32,9 @@ admin.initializeApp({
   }),
 });
 
-io.on(SocketEvents.CONNECTION, handlerConnection);
+io.on(SocketEvents.CONNECTION, (socket: any) => {
+  handlerConnection(io, socket);
+});
 
 app.use(bodyParser.json());
 app.use("/api", router);
