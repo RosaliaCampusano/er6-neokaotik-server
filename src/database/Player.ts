@@ -1,5 +1,14 @@
 import Player from "../models/playerModel";
 
+const getPlayerbyEmail = async (playerEmail: string) => {
+  try {
+    let player = await Player.findOne({ email: playerEmail });
+    return player;
+  } catch (err) {
+    throw err;
+  }
+};
+
 const createPlayer = async (newPlayer: any) => {
   try {
     let playerToInsert = new Player(newPlayer);
@@ -23,4 +32,4 @@ const updatePlayer = async (email: string | any, playerData: any) => {
   }
 };
 
-export = { createPlayer, updatePlayer };
+export = { createPlayer, updatePlayer, getPlayerbyEmail };
