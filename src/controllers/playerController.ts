@@ -1,6 +1,7 @@
 import { playerRolesByEmail, specialEmails } from "../roles/playerRoles";
 import playerService from "../services/playerService";
 import player from "../models/playerModel";
+import Player from "../database/Player";
 
 const obtainPlayer = async (email: string) => {
   const data = await fetch(
@@ -102,4 +103,21 @@ const updatePlayer = async (req: any, res: any) => {
   }
 };
 
-export = { createPlayer };
+const getPlayers = async (req: any, res: any) => {
+  try {
+    const players = await Player.getPlayers();
+    if (players.length === 0) {
+      return res
+        .status(404)
+        .send({ message: "There are no players in the database" });
+    }
+    res.send({ status: "OK", data: players });
+  } catch (err) {
+    res.status(500).send({
+      status: "FAILED",
+      data: { error: err },
+    });
+  }
+};
+
+export = { createPlayer, getPlayers };

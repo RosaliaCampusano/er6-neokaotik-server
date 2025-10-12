@@ -7,6 +7,7 @@ const onIstvanEvent = (io: Server, socket: Socket) => {
     console.log(`Received from client:`, playerEmail);
     const updatedPlayer = await updateIsInsideAttribute(playerEmail);
     io.emit(SocketEvents.ISTVAN_EVENT, {
+      name: updatedPlayer?.name,
       email: updatedPlayer?.email,
       isInside: updatedPlayer?.isInside,
     });
