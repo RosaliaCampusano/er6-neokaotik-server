@@ -1,12 +1,16 @@
-import { Socket } from "socket.io";
+import { Socket, Server } from "socket.io";
 import Player from "../models/playerModel";
 import { SocketEvents } from "../constants";
+import { onIstvanEvent } from "./handlers/istvanHander";
 
-const handlerConnection = (socket: Socket) => {
+const handlerConnection = (io: Server, socket: Socket) => {
   // --- Successful connection with the customer ---
   socket.on(SocketEvents.PLAYER_CONNECTED, async (playerEmail: string) => {
     await handlePlayerConnection(socket, playerEmail);
   });
+
+  // --- The event is only heard when the client emits the event ---
+  onIstvanEvent(io, socket);
 
   // --- Connection with customer disconnect ---
   socket.on("disconnect", async () => {
