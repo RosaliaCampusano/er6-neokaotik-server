@@ -4,8 +4,6 @@ const firebaseAccount: any = {
   client_email: process.env.FIREBASE_SERVICE_CLIENT_EMAIL,
 };
 
-firebaseAccount.private_key.replace(/\\n/g, "\n");
-
 export { firebaseAccount };
 
 export const SocketEvents: any = {
