@@ -2,16 +2,27 @@
 import admin from "firebase-admin";
 import express from "express";
 import bodyParser from "body-parser";
-import mongoose, { MongooseError } from "mongoose";
+import mongoose from "mongoose";
+import { firebaseAccount } from "./constants";
+import { SocketEvents } from "./constants";
 import router from "./routes/playerRoutes";
+import { createServer } from "http";
+import { Server } from "socket.io";
+import handlerConnection from "./socket/connection";
 
-import { firebaseAccount, mongodbRoute } from "./helpers/constants/envConstants";
-
-
+const mongodbRoute: string = process.env.MONGODB_CONNECTION
+  ? process.env.MONGODB_CONNECTION
+  : "";
 
 const app = express();
-const PORT : number | string = process.env.PORT || 3000;
-
+const PORT: number | string = process.env.PORT || 3000;
+const httpServer = createServer(app);
+const io = new Server(httpServer, {
+  cors: {
+    origin: "*",
+    credentials: true,
+  },
+});
 
 admin.initializeApp({
   credential: admin.credential.cert({
@@ -21,15 +32,17 @@ admin.initializeApp({
   }),
 });
 
+io.on(SocketEvents.CONNECTION, (socket: any) => {
+  handlerConnection(io, socket);
+});
+
 app.use(bodyParser.json());
 app.use("/api", router);
 
 async function start() {
-
   try {
     await mongoose.connect(mongodbRoute);
-    app.listen(PORT, () => {
-      console.log('firebase service: ', firebaseAccount);
+    httpServer.listen(PORT, () => {
       console.log(`API is listening on port ${PORT}`);
     });
   } catch (error: any) {

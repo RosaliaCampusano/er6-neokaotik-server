@@ -187,6 +187,9 @@ const playerSchema = new Schema({
   inventory: inventorySchema,
   equipment: equipmentSchema,
   active: Boolean,
+  rol: String,
+  socketId: String,
+  isInside: Boolean,
 });
 
 export default mongoose.model("Player", playerSchema);

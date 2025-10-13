@@ -18,7 +18,17 @@ export const updateOnePlayer = async (email: string | any, playerData: any) => {
   }
 };
 
+export const getAllPlayers = async () => {
+  try {
+    let players = Player.getPlayers();
+    return players;
+  } catch (err) {
+    throw err;
+  }
+};
+
 export default {
   createNewPlayer,
   updateOnePlayer,
+  getAllPlayers,
 };
