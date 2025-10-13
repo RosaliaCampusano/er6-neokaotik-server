@@ -1,4 +1,4 @@
-// require("dotenv").config();
+require("dotenv").config();
 import admin from "firebase-admin";
 import express from "express";
 import bodyParser from "body-parser";
