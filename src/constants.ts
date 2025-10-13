@@ -1,6 +1,6 @@
 const firebaseAccount: any = {
   project_id: process.env.FIREBASE_SERVICE_PROJECT_ID,
-  private_key: process.env.FIREBASE_SERVICE_PRIVATE_KEY.replace(/\\n/g, "\n"),
+  private_key: process.env.FIREBASE_SERVICE_PRIVATE_KEY?.replace(/\\n/g, "\n"),
   client_email: process.env.FIREBASE_SERVICE_CLIENT_EMAIL,
 };
 
