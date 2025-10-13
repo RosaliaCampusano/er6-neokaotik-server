@@ -15,7 +15,7 @@ const mongodbRoute: string = process.env.MONGODB_CONNECTION
   : "";
 
 const app = express();
-const PORT: number | string = process.env.PORT || 3000;
+const PORT: number = +(process.env.PORT || 3000);
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {

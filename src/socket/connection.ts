@@ -40,11 +40,7 @@ const handlePlayerDisconnection = async (socket: Socket) => {
     updatedAttributes.isInside = !player.isInside;
   }
 
-  await Player.findOne(
-    { socketId: socket.id },
-    { $set: updatedAttributes },
-    { new: true }
-  );
+  await Player.findOneAndUpdate({ socketId: socket.id }, updatedAttributes);
 };
 
 export default handlerConnection;
